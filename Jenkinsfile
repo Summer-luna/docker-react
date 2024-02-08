@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-      label "docker-agent-alpine"
-    }
+    agent any
     stages {
         stage('build') {
             steps {
