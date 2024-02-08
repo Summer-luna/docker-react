@@ -11,7 +11,7 @@ pipeline {
         stage('run') {
           steps {
                 sh """
-                  docker run --rm -d react-docker
+                  docker run --rm -d -p 3000:80 react-docker
                 """
             }
         }
