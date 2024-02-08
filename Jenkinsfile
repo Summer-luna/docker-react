@@ -2,6 +2,9 @@ pipeline {
     agent any
     stages {
         stage('build') {
+            environment {
+                HOME = "${env.WORKSPACE}"
+            }
             steps {
                 sh """
                   docker build -t react-docker .
