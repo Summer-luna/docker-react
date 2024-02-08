@@ -1,14 +1,18 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:18-alpine'
-        }
-    }
-
+    agent { label "docker-agent-alpine" }
     stages {
-        stage('Hello') {
+        stage('build') {
             steps {
-                sh 'node -v'
+                sh """
+                  docker build -t react-docker .
+                """
+            }
+        }
+        stage('run') {
+          steps {
+                sh """
+                  docker run --rm react-docker
+                """
             }
         }
     }
