@@ -1,7 +1,10 @@
 pipeline {
-    agent { label "docker-agent-alpine" }
+    agent any
     stages {
         stage('build') {
+            agent {
+              label "docker-agent-alpine"
+            }
             steps {
                 sh """
                   docker build -t react-docker .
@@ -9,6 +12,9 @@ pipeline {
             }
         }
         stage('run') {
+          agent {
+              label "docker-agent-alpine"
+            }
           steps {
                 sh """
                   docker run --rm react-docker
